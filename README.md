@@ -31,8 +31,10 @@
 
 ### **ERD**
 
-<br><img width="398" alt="스크린샷 2025-02-09 오후 5 24 20" src="https://github.com/user-attachments/assets/ce180a9c-bc6e-4dd7-bfc3-d8c8f6546802" />
+<img width="643" alt="스크린샷 2025-02-09 오후 7 33 16" src="https://github.com/user-attachments/assets/3046e752-7654-4a2e-a9f0-0b5d4f33714b" />
 
+
+<br>
 <br>
 <br>
   
@@ -77,6 +79,7 @@
       
     - 일정의 `고유 식별자(ID)`를 사용하여 조회.
 
+<br>
 <br>
 
 ## **[ Level 2 ]**
