@@ -23,13 +23,10 @@ public class ScheduleService {
     @Transactional
     public ScheduleResponseDto saveSchedule(ScheduleRequestDto dto) {
         User findUser = userRepository.findUserByNameOrElseThrow(dto.getUserName());
-
-        Schedule schedule = new Schedule(dto.getUserName(), dto.getTitle(), dto.getContent());
-        schedule.setUser(findUser);
-
+        Schedule schedule = new Schedule(findUser, dto.getTitle(), dto.getContent());
         Schedule savedSchedule = scheduleRepository.save(schedule);
 
-        return new ScheduleResponseDto(savedSchedule.getId(), savedSchedule.getUserName(), savedSchedule.getTitle(), savedSchedule.getContent());
+        return new ScheduleResponseDto(savedSchedule);
     }
 
     @Transactional
@@ -38,7 +35,7 @@ public class ScheduleService {
         List<ScheduleResponseDto> dtoList = new ArrayList<>();
 
         for (Schedule findSchedule : findSchedules) {
-            dtoList.add(new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUserName(), findSchedule.getTitle(), findSchedule.getContent()));
+            dtoList.add(new ScheduleResponseDto(findSchedule));
         }
 
         return dtoList;
@@ -48,7 +45,7 @@ public class ScheduleService {
     public ScheduleResponseDto findScheduleById(Long id) {
         Schedule findSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
 
-        return new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUserName(), findSchedule.getTitle(), findSchedule.getContent());
+        return new ScheduleResponseDto(findSchedule);
 
     }
 
@@ -58,7 +55,7 @@ public class ScheduleService {
 
         findSchedule.update(dto.getTitle(), dto.getContent());
 
-        return new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUserName(), findSchedule.getTitle(), findSchedule.getContent());
+        return new ScheduleResponseDto(findSchedule);
     }
 
     @Transactional
