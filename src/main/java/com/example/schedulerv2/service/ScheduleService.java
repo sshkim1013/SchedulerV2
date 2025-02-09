@@ -51,9 +51,10 @@ public class ScheduleService {
 
     @Transactional
     public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto dto) {
+        User findUser = userRepository.findUserByIdOrElseThrow(id);
         Schedule findSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
 
-        findSchedule.update(dto.getTitle(), dto.getContent());
+        findSchedule.update(findUser, dto.getTitle(), dto.getContent());
 
         return new ScheduleResponseDto(findSchedule);
     }
