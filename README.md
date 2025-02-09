@@ -1,11 +1,23 @@
 # 😄 프로젝트 소개
 내일배움캠프 Spring_5기 트랙의 **[ 스프링 입문 주차 - 일정 관리 앱 Develop ]** 과제에 대한 README.md 문서입니다.
 
-**[ Level 0 ]**
+## **[ Level 0 ]**
   
-**API 명세서**
+### **API 명세서**
 
-- Schedule
+#### [ User ]
+
+|   Description   |   Mapping Type   |   REST API   |    Request   |  Response  |  StatusCode  |
+|-----------------|------------|------------------|-------------------------------------|------------------------------------|--------------|
+|    회원 생성      |    POST    |  /users  |  { <br/>&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;“email" : ”이메일1” <br/> } | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;“email" : ”이메일1” <br/>} | 201 Created |
+|  전체 회원 조회  |    GET    |  /users  |  - | [<br/>&nbsp;&nbsp;{ <br/> &nbsp;&nbsp;&nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;&nbsp;&nbsp;"email" : ”이메일1” <br/>&nbsp;&nbsp;},<br/>&nbsp;&nbsp;{ <br/> &nbsp;&nbsp;&nbsp;&nbsp;“id” : 2, <br/>&nbsp;&nbsp;&nbsp;&nbsp;“name” : ”이름2”, <br/> &nbsp;&nbsp;&nbsp;&nbsp;"email" : ”이메일2” <br/>&nbsp;&nbsp;}<br/>] | 200 OK |
+|  회원 단일 조회  |    GET    |  /users/{id}  |  /users/2  | { <br/> &nbsp;&nbsp;“id” : 2, <br/>&nbsp;&nbsp;“name” : ”이름2”, <br/> &nbsp;&nbsp;“email" : ”이메일2” <br/>} | 200 OK  |
+| 회원 수정 |  PUT  |  /users/{id}  |  /users/1<br/><br/>{ <br/>&nbsp;&nbsp;“name" : ”수정된 이름”, <br/>&nbsp;&nbsp;“email” : ”수정된 이메일” <br/> }  | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“name” : ”수정된 이름”, <br/> &nbsp;&nbsp;“email" : ”수정된 이메일” <br/>} |  200 OK  |
+| 회원 삭제 | DELETE |  /users/{id}  |  /users/1  | - |  200 OK  |
+
+<br>
+
+#### [ Schedule ]
 
 |   Description   |   Mapping Type   |   REST API   |    Request   |  Response  |  StatusCode  |
 |-----------------|------------|------------------|-------------------------------------|------------------------------------|--------------|
@@ -15,20 +27,16 @@
 | 일정 수정 |  PUT  |  /schedules/{id}  |  /schedules/1<br/><br/>{ <br/>&nbsp;&nbsp;“title" : ”수정된 제목”, <br/>&nbsp;&nbsp;“content” : ”수정된 일정” <br/> }  | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“userName” : ”이름”, <br/> &nbsp;&nbsp;“title" : ”수정된 제목”, <br/>&nbsp;&nbsp;“content” : ”수정된 일정” <br/>} |  200 OK  |
 | 일정 삭제 | DELETE |  /schedules/{id}  |  /schedules/1  | - |  200 OK  |
 
-<br>
-
-- User
-
 <br><br>
 
-**ERD**
+### **ERD**
 
 <br><img width="398" alt="스크린샷 2025-02-09 오후 5 24 20" src="https://github.com/user-attachments/assets/ce180a9c-bc6e-4dd7-bfc3-d8c8f6546802" />
 
 <br>
 <br>
   
-**[ Level 1 ]**
+## **[ Level 1 ]**
 
 **필수 과제**
   - 일정 생성(일정 작성하기)
@@ -71,7 +79,7 @@
 
 <br>
 
-**[ Level 2 ]**
+## **[ Level 2 ]**
 
 **필수 과제**
   - 선택한 일정 수정
