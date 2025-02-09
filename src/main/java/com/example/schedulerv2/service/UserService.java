@@ -22,8 +22,7 @@ public class UserService {
         User user = new User(dto.getName(), dto.getEmail());
         User savedUser = userRepository.save(user);
 
-        return new UserResponseDto(savedUser.getId(), savedUser.getName(), savedUser.getEmail(),
-                                   savedUser.getCreateDate(), savedUser.getModifiedDate());
+        return new UserResponseDto(savedUser.getId(), savedUser.getName(), savedUser.getEmail());
     }
 
     @Transactional
@@ -32,8 +31,7 @@ public class UserService {
 
         List<UserResponseDto> dtoList = new ArrayList<>();
         for (User findUser : findUsers) {
-            dtoList.add(new UserResponseDto(findUser.getId(), findUser.getName(), findUser.getEmail(),
-                                            findUser.getCreateDate(), findUser.getModifiedDate()));
+            dtoList.add(new UserResponseDto(findUser.getId(), findUser.getName(), findUser.getEmail()));
         }
 
         return dtoList;
@@ -43,8 +41,7 @@ public class UserService {
     public UserResponseDto findUserById(Long id) {
         User findUser = userRepository.findUserByIdOrElseThrow(id);
 
-        return new UserResponseDto(findUser.getId(), findUser.getName(), findUser.getEmail(),
-                findUser.getCreateDate(), findUser.getModifiedDate());
+        return new UserResponseDto(findUser.getId(), findUser.getName(), findUser.getEmail());
     }
 
     @Transactional
@@ -53,8 +50,7 @@ public class UserService {
 
         findUser.update(dto.getName(), dto.getEmail());
 
-        return new UserResponseDto(findUser.getId(), findUser.getName(), findUser.getEmail(),
-                                   findUser.getCreateDate(), findUser.getModifiedDate());
+        return new UserResponseDto(findUser.getId(), findUser.getName(), findUser.getEmail());
     }
 
     @Transactional

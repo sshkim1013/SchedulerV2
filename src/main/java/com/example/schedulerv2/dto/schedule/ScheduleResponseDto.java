@@ -12,6 +12,4 @@ public class ScheduleResponseDto {
     private final String userName;
     private final String title;
     private final String content;
-    private final LocalDateTime createDate;
-    private final LocalDateTime modifiedDate;
 }
