@@ -33,7 +33,6 @@
 
 <img width="643" alt="스크린샷 2025-02-09 오후 7 33 16" src="https://github.com/user-attachments/assets/3046e752-7654-4a2e-a9f0-0b5d4f33714b" />
 
-
 <br>
 <br>
 <br>
@@ -41,95 +40,170 @@
 ## **[ Level 1 ]**
 
 **필수 과제**
-  - 일정 생성(일정 작성하기)
+
+  - **일정 생성(일정 작성하기)**
+
     - `POST` 사용.
       
-    - `할일`, `작성자명`, `비밀번호`, `작성/수정일`을 저장.
+    - `작성 유저명`, `할일 제목`, `할일 내용`, `작성일`, `수정일`을 입력 후, DB에 저장.
       
     - `작성/수정일`은 날짜와 시간을 모두 포함한 형태.
-      - LocalDateTime
-      - DATETIME
+      
+      - **JAVA** : LocalDateTime
+        
+      - **MySQL** : DATETIME(6)
+        
+      - `Jpa Auditing` 활용하여 DB에 자동 저장  - `BaseEntity` 사용.
+        
+        - `생성일`인 `createDate`는 `updatable=false`로 설정.
+        
+        - `수정일`인 `modifiedDate`는 `updatable=true`로 설정하여 엔터티가 수정될 때마다 시간 갱신.
       
     - 각 일정의 `고유 식별자(ID)`를 자동으로 생성하여 관리.
       
       - id AUTO_INCREMENT PRIMARY KEY
     
-    - 최초 입력 시, `수정일`은 `작성일`과 동일.
-      
-      - this.createDate = LocalDateTime.now();
-      - this.modifiedDate = LocalDateTime.now();
 
+<br>
       
-  - 전체 일정 조회(등록된 일정 불러오기)
+  - **전체 일정 조회(저장된 일정을 모두 불러오기)**
+
     - `GET` 사용.
-      
-    - 다음 조건을 바탕으로 등록된 일정 목록을 전부 조회.
-      
-      - `수정일` (형식 : YYYY-MM-DD)
-      - `작성자명`
-        
-    - RequestParam으로 `작성자명(authorName)`과 `수정일(modifiedDate)`만을 전달 가능하도록 구현.
 
-     
-  - 선택 일정 조회(선택한 일정 정보 불러오기)
+    - **배열 + JSON** 형식으로 결과 반환.
+
+<br>
+  
+  - **선택 일정 조회(선택한 일정 정보 불러오기)**
     
     - `GET` 사용.
       
-    - 선택한 일정 단건의 정보를 조회.
+    - 선택한 단건의 일정을 조회.
       
-    - 일정의 `고유 식별자(ID)`를 사용하여 조회.
+    - `고유 식별자(ID)`를 사용하여 특정한 일정 조회.
 
 <br>
+
+  - **선택한 일정 수정**
+    
+    - `PUT` 사용.
+
+    - 일정을 작성한 `유저의 정보`와 일정의 `제목`, `내용`을 수정. - User 엔터티와 매핑
+
+    - 일정의 `고유 식별자(ID)`와 함께, JSON 형식의 요청을 전송.
+
 <br>
+      
+  - **선택한 유저 삭제**
+    
+    - `DELETE` 사용.
+      
+    - `고유 식별자(ID)`를 사용하여 특정한 일정 삭제.
+   
+
+<br><br>
+
 
 ## **[ Level 2 ]**
 
 **필수 과제**
-  - 선택한 일정 수정
-    
-    - `UPDATE` 사용.
-      
-    - 선택한 일정 내용 중 `할일`, `작성자명`만 수정 가능하도록 구현.
-      
-    - 서버에 일정 수정을 요청할 때, `비밀번호`를 함께 전달하여 비밀번호가 일치하면 수정 가능하도록 구현.
-      
-    - `작성일`은 변경 불가, 수정 완료 시, 수정한 시점으로 `수정일` 변경.
-      
-      - `this.modifiedDate = LocalDateTime.now();`
 
+  - **일정 생성(일정 작성하기)**
+
+    - `POST` 사용.
       
-  - 선택한 일정 삭제
+    - `작성 유저명`, `할일 제목`, `할일 내용`, `작성일`, `수정일`을 입력 후, DB에 저장.
+      
+    - `작성/수정일`은 날짜와 시간을 모두 포함한 형태.
+      
+      - **JAVA** : LocalDateTime
+        
+      - **MySQL** : DATETIME(6)
+        
+      - `Jpa Auditing` 활용하여 DB에 자동 저장 - `BaseEntity` 사용.
+        
+        - `생성일`인 `createDate`는 `updatable=false`로 설정.
+          
+        - `수정일`인 `modifiedDate`는 `updatable=true`로 설정하여 엔터티가 수정될 때마다 시간 갱신.
+      
+    - 각 유저의 `고유 식별자(ID)`를 자동으로 생성하여 관리.
+      
+      - id AUTO_INCREMENT PRIMARY KEY
+
+<br>
+      
+  - **전체 일정 조회(저장된 일정을 모두 불러오기)**
+
+    - `GET` 사용.
+
+    - **배열 + JSON** 형식으로 결과 반환.
+
+<br>
+  
+  - **선택 일정 조회(선택한 일정 정보 불러오기)**
+    
+    - `GET` 사용.
+      
+    - 선택한 특정 유저의 정보를 조회.
+      
+    - 유저의 `고유 식별자(ID)`를 사용하여 조회.
+
+<br>
+
+  - **선택한 유저 수정**
+    
+    - `PUT` 사용.
+
+    - 유저의 `이름`과 `이메일`을 수정.
+
+    - 유저의 `고유 식별자(ID)`와 함께, JSON 형식의 요청을 전송.
+
+<br>
+      
+  - **선택한 유저 삭제**
     
     - `DELETE` 사용.
       
-    - 서버에 일정 수정을 요청할 때 `비밀번호`를 함께 전달하여 비밀번호가 일치하면 수정 가능하도록 구현.
+    - 유저의 `고유 식별자(ID)`를 사용하여 삭제.
+   
+
+<br><br>
+
   
 ---
 
 # 💻 개발 기간(리팩토링 기간은 제외)
 
 - **controller 패키지**
-  - **ScheduleController.java** : 25.01.27 ~ 25.01.27 (1일 미만)
+  - **ScheduleController.java** : 25.02.08 ~ 25.02.08 (1일 미만)
+  - **UserController.java** : 25.02.08 ~ 25.02.08 (1일 미만)
 
   <br>
   
 - **service 패키지**
-  - **ScheduleService.java** : 25.01.27 ~ 25.01.27 (1일 미만)
-  - **ScheduleServiceImpl.java** : 25.01.27 ~ 25.01.27 (1일 미만)
+  - **ScheduleService.java + User 객체 연동** : 25.02.08 ~ 25.02.09 (1일)
+  - **UserService.java** : 25.02.08 ~ 25.02.08 (1일 미만)
 
   <br>
   
 - **repository 패키지**
-  - **ScheduleRepository.java** : 25.01.27 ~ 25.01.27 (1일 미만)
-  - **JdbcTemplateScheduleRepository.java + MySQL 연동** : 25.01.29 ~ 25.01.30 (1일)
+  - **ScheduleRepository.java** : 25.02.08 ~ 25.02.08 (1일 미만)
+  - **UserRepository.java** : 25.02.08 ~ 25.02.08 (1일 미만)
 
   <br>
   
 - **entity 패키지**
-  - **Schedule.java** : 25.01.27 ~ 25.01.27 (1일 미만)
+  - **BaseEntity.java** : 25.02.09 ~ 25.02.09(1일 미만)
+  - **Schedule.java  + User 객체 연동** : 25.02.08 ~ 25.02.09 (1일)
+  - **User.java** : 25.02.08 ~ 25.02.08 (1일 미만)
   
   <br>
   
 - **dto 패키지**
-  - **ScheduleRequestDto.java** : 25.01.27 ~ 25.01.27 (1일 미만)
-  - **ScheduleResponseDto.java** : 25.01.27 ~ 25.01.27 (1일 미만)
+  - **schedule 패키지**
+    - **ScheduleRequestDto.java** : 25.02.08 ~ 25.02.08 (1일 미만)
+    - **ScheduleResponseDto.java** : 25.02.08 ~ 25.02.08 (1일 미만)
+   
+  - **user 패키지**
+    - **UserRequestDto.java** : 25.02.08 ~ 25.02.08 (1일 미만)
+    - **UserResponseDto.java** : 25.02.08 ~ 25.02.08 (1일 미만)
