@@ -3,6 +3,7 @@ package com.example.schedulerv2.controller;
 import com.example.schedulerv2.dto.user.UserRequestDto;
 import com.example.schedulerv2.dto.user.UserResponseDto;
 import com.example.schedulerv2.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/signup")
     public ResponseEntity<UserResponseDto> saveUser(@RequestBody UserRequestDto dto) {
         return new ResponseEntity<>(userService.saveUser(dto), HttpStatus.CREATED);
     }

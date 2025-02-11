@@ -12,7 +12,7 @@ import java.io.IOException;
 @Slf4j
 public class LoginFilter implements Filter {
 
-    private static final String[] URL_LIST = {"/users"};
+    private static final String[] WHITE_LIST = {"/auth/login", "/users", "/users/*"};
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
@@ -21,7 +21,7 @@ public class LoginFilter implements Filter {
 
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        log.info("로그인 필터 로직 실행!");
+        log.info("로그인 필터 로직 실행! 요청 URI={}", requestURI);
 
         //WHITE_LIST 내에 포함된 경우 true -> !true -> false
         if (!isWhiteList(requestURI)) {
@@ -29,11 +29,12 @@ public class LoginFilter implements Filter {
             HttpSession session = httpRequest.getSession(false);
 
             if (session == null || session.getAttribute("sessionKey") == null) {
-                throw new RuntimeException("로그인을 해주시기 바랍니다.");
+                log.info("인증 실패! 로그인 필요.");
+                httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "로그인이 필요합니다.");
+                return;
             }
 
-            //로그인 성공 로직
-            log.info("로그인 성공!");
+            log.info("인증 성공! 세션 확인 완료.");
 
         }
 
@@ -46,6 +47,6 @@ public class LoginFilter implements Filter {
 
     //WHITE_LIST 배열의 값과 일치하는지 검증하는 로직
     private boolean isWhiteList(String requestURI) {
-        return PatternMatchUtils.simpleMatch(URL_LIST, requestURI);
+        return PatternMatchUtils.simpleMatch(WHITE_LIST, requestURI);
     }
 }

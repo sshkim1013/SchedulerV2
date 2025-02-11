@@ -29,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LoginFilter());
         filterRegistrationBean.setOrder(2);
-        filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.addUrlPatterns("/auth/login");
 
         return filterRegistrationBean;
     }
