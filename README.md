@@ -27,6 +27,16 @@
 | 일정 수정 |  PUT  |  /schedules/{id}  |  /schedules/1<br/><br/>{ <br/>&nbsp;&nbsp;“title" : ”수정된 제목”, <br/>&nbsp;&nbsp;“content” : ”수정된 일정” <br/> }  | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“userName” : ”이름”, <br/> &nbsp;&nbsp;“title" : ”수정된 제목”, <br/>&nbsp;&nbsp;“content” : ”수정된 일정” <br/>} |  200 OK  |
 | 일정 삭제 | DELETE |  /schedules/{id}  |  /schedules/1  | - |  200 OK  |
 
+<br>
+
+#### 1-3) Login
+
+- 단, 회원 생성이 우선시 되어야 한다.
+
+|   Description   |   Mapping Type   |   REST API   |    Request   |  Response  |  StatusCode  |
+|-----------------|------------|------------------|-------------------------------------|------------------------------------|--------------|
+|    일정 생성      |    POST    |  /auth/login  |  { <br/>&nbsp;&nbsp;“email” : ”이메일1”, <br/> &nbsp;&nbsp;“password" : ”비밀번호1”<br/> } | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“name” : ”이름1”, <br/>&nbsp;&nbsp;“email" : ”이메일1” <br/>} | 200 OK |
+
 <br><br>
 
 ### **2. ERD**
