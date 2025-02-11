@@ -9,7 +9,7 @@
 
 |   Description   |   Mapping Type   |   REST API   |    Request   |  Response  |  StatusCode  |
 |-----------------|------------|------------------|-------------------------------------|------------------------------------|--------------|
-|    회원 생성      |    POST    |  /users  |  { <br/>&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;“email" : ”이메일1” <br/> } | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;“email" : ”이메일1” <br/>} | 201 Created |
+|    회원 생성      |    POST    |  /users/signup  |  { <br/>&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;“email" : ”이메일1” <br/> } | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;“email" : ”이메일1” <br/>} | 201 Created |
 |  전체 회원 조회  |    GET    |  /users  |  - | [<br/>&nbsp;&nbsp;{ <br/> &nbsp;&nbsp;&nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;&nbsp;&nbsp;“name” : ”이름1”, <br/> &nbsp;&nbsp;&nbsp;&nbsp;"email" : ”이메일1” <br/>&nbsp;&nbsp;},<br/>&nbsp;&nbsp;{ <br/> &nbsp;&nbsp;&nbsp;&nbsp;“id” : 2, <br/>&nbsp;&nbsp;&nbsp;&nbsp;“name” : ”이름2”, <br/> &nbsp;&nbsp;&nbsp;&nbsp;"email" : ”이메일2” <br/>&nbsp;&nbsp;}<br/>] | 200 OK |
 |  회원 단일 조회  |    GET    |  /users/{id}  |  /users/2  | { <br/> &nbsp;&nbsp;“id” : 2, <br/>&nbsp;&nbsp;“name” : ”이름2”, <br/> &nbsp;&nbsp;“email" : ”이메일2” <br/>} | 200 OK  |
 | 회원 수정 |  PUT  |  /users/{id}  |  /users/1<br/><br/>{ <br/>&nbsp;&nbsp;“name" : ”수정된 이름”, <br/>&nbsp;&nbsp;“email” : ”수정된 이메일” <br/> }  | { <br/> &nbsp;&nbsp;“id” : 1, <br/>&nbsp;&nbsp;“name” : ”수정된 이름”, <br/> &nbsp;&nbsp;“email" : ”수정된 이메일” <br/>} |  200 OK  |
